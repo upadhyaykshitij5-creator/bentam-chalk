@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Track Your Delivery — Bentam Chalk</title>
+<link rel="stylesheet" href="ops.css" />
+</head>
+<body>
+  <div class="ops-wrap">
+    <div class="ops-header" style="justify-content:center">
+      <span class="ops-brand">Bentam <span>Chalk</span></span>
+    </div>
+    <div id="content">
+      <p class="ops-empty">Loading your delivery schedule…</p>
+    </div>
+  </div>
+
+  <script>
+    function escapeHtml(s) {
+      return String(s || "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+    }
+    function badgeHtml(status) {
+      const map = { pending: "⏳ Pending", delivered: "✅ Delivered", missed: "❌ Missed", skipped: "⏸️ Skipped" };
+      return `<span class="badge ${status}">${map[status] || status}</span>`;
+    }
+
+    async function load() {
+      const token = new URLSearchParams(location.search).get("t") || "";
+      const content = document.getElementById("content");
+      if (!token) {
+        content.innerHTML = `<p class="ops-empty">No tracking link provided. Check the link we sent you, or message us on <a class="ops-link" href="https://wa.me/919258010913" target="_blank" rel="noopener">WhatsApp</a>.</p>`;
+        return;
+      }
+      let data;
+      try {
+        const r = await fetch("/api/track?t=" + encodeURIComponent(token));
+        if (!r.ok) throw new Error();
+        data = await r.json();
+      } catch {
+        content.innerHTML = `<p class="ops-empty">We couldn't find that tracking link. If it's from a recent order, message us on <a class="ops-link" href="https://wa.me/919258010913" target="_blank" rel="noopener">WhatsApp</a> and we'll help.</p>`;
+        return;
+      }
+
+      const today = new Date().toISOString().slice(0, 10);
+      const delivered = data.deliveries.filter((d) => d.status === "delivered").length;
+      const total = data.deliveries.length;
+
+      content.innerHTML = `
+        <div class="ops-card">
+          <h1>Hi ${escapeHtml(data.customerName)} 👋</h1>
+          <p class="ops-sub" style="margin-bottom:0.75rem">
+            ${escapeHtml(data.product.name)} (${escapeHtml(data.product.size)}) · ${escapeHtml(data.plan.type)} plan ·
+            ${data.plan.bottlesPerDay} bottle${data.plan.bottlesPerDay > 1 ? "s" : ""}/day
+          </p>
+          <p style="font-size:0.9rem;color:var(--cream)">${delivered} of ${total} deliveries completed so far.</p>
+        </div>
+        <div class="ops-card" style="padding:1rem 1.4rem">
+          <h2 style="margin-bottom:0.5rem">Your Schedule</h2>
+          <div>
+            ${data.deliveries.map((d) => `
+              <div class="day-row ${d.date === today ? "today" : ""}">
+                <span class="day-date">${d.date}${d.date === today ? " (today)" : ""}</span>
+                <span class="day-bottles">${d.bottles}/day</span>
+                ${badgeHtml(d.status)}
+              </div>`).join("")}
+          </div>
+        </div>
+        <p style="text-align:center;font-size:0.85rem;color:var(--slate);margin-top:1rem">
+          Questions about a delivery? <a class="ops-link" href="https://wa.me/919258010913" target="_blank" rel="noopener">Message us on WhatsApp</a>.
+        </p>`;
+    }
+    load();
+  </script>
+</body>
+</html>

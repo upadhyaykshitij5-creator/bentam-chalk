@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Today's Route — Bentam Chalk</title>
+<link rel="stylesheet" href="ops.css" />
+</head>
+<body>
+  <div class="ops-wrap wide">
+    <div class="ops-header">
+      <span class="ops-brand">Bentam <span>Chalk</span> — Delivery</span>
+      <button class="ops-logout" id="logoutBtn">Log out</button>
+    </div>
+    <h1>Today's Route</h1>
+    <p class="ops-sub">Logged in as <strong id="whoAmI">…</strong>. Mark each stop as you go — customers see the update on their own tracking link instantly.</p>
+
+    <div class="ops-date-row">
+      <label for="dateInput" style="font-size:0.85rem;color:var(--slate)">Date:</label>
+      <input type="date" id="dateInput" />
+    </div>
+
+    <div class="ops-card" style="padding:0">
+      <div id="routeList"></div>
+    </div>
+  </div>
+
+  <script>
+    const $ = (s) => document.querySelector(s);
+    const todayStr = new Date().toISOString().slice(0, 10);
+    $("#dateInput").value = todayStr;
+
+    async function requireStaff() {
+      const r = await fetch("/api/staff/me");
+      const me = await r.json();
+      if (!me.loggedIn || (me.role !== "delivery" && me.role !== "owner")) {
+        location.href = "/staff-login.html";
+        return null;
+      }
+      $("#whoAmI").textContent = me.username + " (" + me.role + ")";
+      return me;
+    }
+
+    function badgeHtml(status) {
+      const map = { pending: "⏳ Pending", delivered: "✅ Delivered", missed: "❌ Missed", skipped: "⏸️ Skipped" };
+      return `<span class="badge ${status}">${map[status] || status}</span>`;
+    }
+
+    async function loadRoute() {
+      const date = $("#dateInput").value;
+      const r = await fetch("/api/delivery/today?date=" + encodeURIComponent(date));
+      if (r.status === 401) { location.href = "/staff-login.html"; return; }
+      const data = await r.json();
+      const list = $("#routeList");
+      if (!data.rows || !data.rows.length) {
+        list.innerHTML = `<p class="ops-empty">No deliveries scheduled for ${date}.</p>`;
+        return;
+      }
+      list.innerHTML = data.rows.map((row) => {
+        const d = row.delivery;
+        const fullAddr = `${row.customer.address || ""}${row.customer.locality ? ", " + row.customer.locality : ""}, Agra`;
+        const mapsUrl = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(fullAddr);
+        return `
+          <div class="route-item" data-sub="${row.subId}" data-date="${d.date}">
+            <div class="route-info">
+              <div class="route-name">${escapeHtml(row.customer.name)} <span style="font-weight:400;color:var(--slate);font-size:0.8rem">· ${escapeHtml(row.customer.phone || "")}</span></div>
+              <div class="route-addr">${escapeHtml(row.customer.address || "")}${row.customer.locality ? ", " + escapeHtml(row.customer.locality) : ""}</div>
+              <a class="ops-link" href="${mapsUrl}" target="_blank" rel="noopener">📍 Open in Maps</a>
+              <div class="route-product">${escapeHtml(row.product.name)} (${escapeHtml(row.product.size)}) × ${d.bottles}/day</div>
+              <div style="margin-top:0.35rem">${badgeHtml(d.status)}</div>
+            </div>
+            <div class="route-actions">
+              <button class="ok ${d.status === "delivered" ? "active" : ""}" data-status="delivered">✅ Delivered</button>
+              <button class="no ${d.status === "missed" ? "active" : ""}" data-status="missed">❌ Missed</button>
+              <button class="skip ${d.status === "skipped" ? "active" : ""}" data-status="skipped">⏸️ Skip</button>
+            </div>
+          </div>`;
+      }).join("");
+    }
+
+    function escapeHtml(s) {
+      return String(s || "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+    }
+
+    $("#routeList").addEventListener("click", async (e) => {
+      const btn = e.target.closest("button[data-status]");
+      if (!btn) return;
+      const item = btn.closest(".route-item");
+      const subId = item.dataset.sub, date = item.dataset.date, status = btn.dataset.status;
+      btn.disabled = true;
+      try {
+        const r = await fetch("/api/delivery/mark", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ subId, date, status }),
+        });
+        if (r.ok) loadRoute();
+      } finally {
+        btn.disabled = false;
+      }
+    });
+
+    $("#dateInput").addEventListener("change", loadRoute);
+    $("#logoutBtn").addEventListener("click", async () => {
+      await fetch("/api/staff/logout", { method: "POST" });
+      location.href = "/staff-login.html";
+    });
+
+    (async () => { if (await requireStaff()) loadRoute(); })();
+  </script>
+</body>
+</html>

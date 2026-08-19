@@ -1,0 +1,13 @@
+.env
+.env.*
+!.env.example
+orders.log.jsonl
+node_modules/
+
+# Delivery-tracking data: customer PII (subscriptions.json) and staff
+# password hashes (staff.json) — never commit either.
+subscriptions.json
+staff.json
+
+# Razorpay key download (contains secret)
+rzp-key.csv

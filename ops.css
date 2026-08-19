@@ -1,0 +1,106 @@
+/* ============================================================
+   ops.css — shared styles for the delivery-tracking pages
+   (track.html, staff-login.html, delivery.html, admin.html).
+   Same brand tokens as styles.css, kept separate so these small
+   operational pages don't load the full marketing stylesheet.
+   ============================================================ */
+:root {
+  --bg: #0E0E0E; --bg-elevated: #171717; --bg-elevated-2: #1F1F1F;
+  --copper: #B87333; --gold: #D4AF37; --white: #FFFFFF;
+  --cream: #E7E1D6; --slate: #A6A29B; --line: rgba(255,255,255,0.10);
+  --green: #4CAF7D; --amber: #E0A82E; --red: #E0654C;
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --radius: 14px; --radius-sm: 9px;
+  --copper-grad: linear-gradient(135deg, var(--copper), var(--gold));
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--cream);
+  font-family: var(--font-sans); line-height: 1.5; min-height: 100vh;
+}
+.ops-wrap { max-width: 720px; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
+.ops-wrap.wide { max-width: 1100px; }
+.ops-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1.5rem; }
+.ops-brand { font-family: var(--font-serif); font-size: 1.3rem; font-weight: 700; color: var(--white); }
+.ops-brand span { color: var(--copper); }
+.ops-logout { font-size: 0.8rem; color: var(--slate); background: none; border: 1px solid var(--line); border-radius: 100px; padding: 0.4rem 0.9rem; cursor: pointer; }
+.ops-logout:hover { color: var(--cream); border-color: var(--copper); }
+
+h1, h2, h3 { font-family: var(--font-serif); color: var(--white); margin: 0 0 0.5rem; font-weight: 700; }
+h1 { font-size: 1.7rem; } h2 { font-size: 1.25rem; } h3 { font-size: 1.05rem; }
+p { color: var(--cream); }
+.ops-sub { color: var(--slate); font-size: 0.92rem; margin-bottom: 1.5rem; }
+
+.ops-card {
+  background: var(--bg-elevated); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 1.4rem; margin-bottom: 1rem;
+}
+
+/* Login form */
+.ops-login-shell { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 1.5rem; }
+.ops-login-box { width: 100%; max-width: 380px; }
+.ops-field { margin-bottom: 1rem; }
+.ops-field label { display: block; font-size: 0.82rem; color: var(--slate); margin-bottom: 0.35rem; }
+.ops-field input, .ops-field select {
+  width: 100%; padding: 0.65rem 0.85rem; font-size: 0.95rem; color: var(--white);
+  background: rgba(255,255,255,0.05); border: 1px solid var(--line); border-radius: var(--radius-sm);
+}
+.ops-field input:focus, .ops-field select:focus { outline: none; border-color: var(--copper); }
+.ops-btn {
+  width: 100%; padding: 0.75rem; font-size: 0.95rem; font-weight: 700; cursor: pointer;
+  border: none; border-radius: 100px; background: var(--copper-grad); color: #1a1206;
+}
+.ops-btn:hover { filter: brightness(1.08); }
+.ops-btn.secondary { background: none; border: 1px solid var(--line); color: var(--cream); }
+.ops-error { color: var(--red); font-size: 0.85rem; margin-top: 0.75rem; }
+
+/* Status badges */
+.badge { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.78rem; font-weight: 700; padding: 0.25rem 0.65rem; border-radius: 100px; }
+.badge.pending { background: rgba(224,168,46,0.15); color: var(--amber); }
+.badge.delivered { background: rgba(76,175,125,0.15); color: var(--green); }
+.badge.missed { background: rgba(224,101,76,0.15); color: var(--red); }
+.badge.skipped { background: rgba(166,162,155,0.15); color: var(--slate); }
+
+/* Delivery day list (customer tracker) */
+.day-row { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; padding: 0.65rem 0; border-bottom: 1px solid var(--line); }
+.day-row:last-child { border-bottom: none; }
+.day-row .day-date { font-size: 0.9rem; color: var(--cream); }
+.day-row.today .day-date { color: var(--copper); font-weight: 700; }
+.day-row .day-bottles { font-size: 0.78rem; color: var(--slate); }
+
+/* Delivery-staff route table */
+.route-item { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 1rem; padding: 0.85rem 1rem; border-bottom: 1px solid var(--line); }
+.route-item:last-child { border-bottom: none; }
+.route-info { flex: 1; min-width: 200px; }
+.route-name { font-weight: 700; color: var(--white); font-size: 0.95rem; }
+.route-addr { font-size: 0.82rem; color: var(--slate); margin-top: 0.15rem; }
+.route-product { font-size: 0.82rem; color: var(--cream); margin-top: 0.15rem; }
+.route-actions { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.route-actions button {
+  font-size: 0.76rem; font-weight: 700; padding: 0.35rem 0.7rem; border-radius: 100px; cursor: pointer;
+  border: 1px solid var(--line); background: none; color: var(--cream);
+}
+.route-actions button.ok:hover, .route-actions button.ok.active { border-color: var(--green); color: var(--green); }
+.route-actions button.no:hover, .route-actions button.no.active { border-color: var(--red); color: var(--red); }
+.route-actions button.skip:hover, .route-actions button.skip.active { border-color: var(--slate); color: var(--slate); }
+
+/* Admin customer list */
+.cust-item { padding: 1rem; border-bottom: 1px solid var(--line); }
+.cust-item:last-child { border-bottom: none; }
+.cust-top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem; align-items: baseline; }
+.cust-name { font-weight: 700; color: var(--white); }
+.cust-meta { font-size: 0.8rem; color: var(--slate); margin-top: 0.2rem; }
+.cust-stats { display: flex; gap: 0.9rem; font-size: 0.78rem; color: var(--slate); margin-top: 0.5rem; }
+.cust-toggle { font-size: 0.78rem; color: var(--copper); cursor: pointer; background: none; border: none; padding: 0; margin-top: 0.5rem; }
+.cust-detail { display: none; margin-top: 0.75rem; max-height: 260px; overflow-y: auto; }
+.cust-detail.open { display: block; }
+
+.ops-empty { color: var(--slate); font-size: 0.9rem; padding: 1.5rem 0; text-align: center; }
+.ops-date-row { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1rem; }
+.ops-date-row input[type="date"] {
+  padding: 0.5rem 0.7rem; background: rgba(255,255,255,0.05); border: 1px solid var(--line);
+  border-radius: var(--radius-sm); color: var(--white); font-family: var(--font-sans);
+}
+a.ops-link { color: var(--copper); text-decoration: none; }
+a.ops-link:hover { color: var(--gold); }

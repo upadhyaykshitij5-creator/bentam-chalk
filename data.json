@@ -1,0 +1,390 @@
+{
+  "brand": {
+    "name": "Bentam Chalk",
+    "trademark": "Bentam Chalk™",
+    "tagline": "Next-Generation Plant-Based Refreshment & Nutrition.",
+    "missionVision": {
+      "kicker": "Our Promise",
+      "quote": "Profit will never come before our conscience.",
+      "mission": "Bentam Chalk was born from care - for human health, for our planet, for the animals we share it with. We protect everyday families from adulteration by crafting pure, daily-fresh plant nourishment with the honesty of a home kitchen. Through Masala Boondi Chaas and Soya Protein X, we make full-spectrum, cruelty-free wellness accessible to all, bridging every divide with a drink that unites everyone.",
+      "vision": "We dream of a kinder, healthier future where pure plant nutrition becomes a daily habit for every home. Where food choices heal the earth, protect innocent animals, and bring back our timeless values of living in harmony with nature. We see every person we serve as family - not just customers. Starting with fresh drinks and wholesome foods, we're building toward education, healthcare, and real community upliftment, proving that honest care and nation-building matter far more than corporate profit."
+    },
+    "_comment_founders": "Per-photo framing inside the 3:4 oval. Omit crop (or fit:'full') to show the WHOLE photo un-cropped (contain). Add crop {x,y,w,h} — a rectangle in the source photo's own pixel space, aspect w:h = 3:4 — to zoom to that region (cover). script.js converts a crop to responsive background %s, so re-frame by nudging crop.x/y/w/h (keep w:h = 3:4). natural {w,h} = source photo's real pixel size.",
+    "founders": {
+      "mission": { "name": "Tej Tarun Upadhyay", "role": "Founder", "photo": "founder image new.jpeg", "natural": { "w": 1086, "h": 1448 }, "fit": "full" },
+      "vision": { "name": "Damini Raghuvanshi", "role": "Co-Founder", "photo": "damini new.jpeg", "natural": { "w": 1200, "h": 1600 }, "crop": { "x": 365, "y": 555, "w": 545, "h": 727 }, "filter": "contrast(1.05) saturate(1.03)" }
+    },
+    "company": "Damiksh Enterprises",
+    "legal": {
+      "company": "Damiksh Enterprises",
+      "fssai": "FSSAI Lic. No. 22726113001754",
+      "udyam": "UDYAM Registration No. UDYAM-UP-01-0196328",
+      "rdaFootnote": "%RDA based on 2000 kcal adult diet.",
+      "labReportNote": "Lab report available on request."
+    },
+    "contact": {
+      "whatsapp": "9258010913",
+      "whatsappIntl": "919258010913",
+      "email": "bentamchalk@gmail.com",
+      "instagram": "@bentamchalk",
+      "instagramUrl": "https://instagram.com/bentamchalk",
+      "instagramQr": "insta-qr.jpeg",
+      "facebook": "Bentam Chalk",
+      "facebookUrl": "https://www.facebook.com/share/1CvRyWuY2B/"
+    },
+    "payment": {
+      "upiId": "7088431394@hdfc",
+      "payeeName": "Damini Raghuvanshi",
+      "qrImage": "payment-qr-cropped.jpeg",
+      "_comment_gateways": "Provider-agnostic: paste a real Payment Link/Button URL from ANY gateway's dashboard here (Razorpay Payment Pages, Cashfree Payment Links, Instamojo, PayU, PhonePe PG, etc.) once you have a real account. A 'Pay via <label>' button appears automatically for each entry — no code changes needed. Leave the array empty until you have a real, live link; a fake/placeholder URL here would silently break checkout for real customers.",
+      "gateways": []
+    },
+    "_comment_orderCapture": "Where customer + order details are saved so you OWN them (independent of WhatsApp). Paste a form-endpoint URL that emails you each submission or writes it to a sheet — e.g. Formspree (https://formspree.io/f/xxxx), Getform, Basin, or a Google Apps Script web-app URL. All are free, no KYC, ~2 min to set up. When set, every checkout POSTs {orderId, items, total, name, phone, address, locality} there. Leave endpoint empty to keep the current WhatsApp order fallback until you've set one up.",
+    "orderCapture": {
+      "endpoint": ""
+    }
+  },
+
+  "_comment_serviceAreas": "The ONLY place delivery-area names live. Every 'we deliver to X' line on the site/chatbot pulls from this list — add or remove a city here and it updates everywhere automatically. Keep in sync with deliveryZones below (add the matching pincodes there too).",
+  "serviceAreas": ["Agra"],
+
+  "_comment_deliveryGeoBounds": "Rough lat/lng box around Agra city, used ONLY by the 'Use my location' GPS button to say yes/no on 'are you roughly in Agra'. It cannot identify an exact locality (that needs a paid geocoding API) — customers still enter/pick a pincode for the actual delivery address.",
+  "deliveryGeoBounds": { "latMin": 27.05, "latMax": 27.30, "lngMin": 77.90, "lngMax": 78.15 },
+
+  "_comment_deliveryZones": "Delivery-only-in-Agra: every standard Agra city pincode (282001–282010), each mapped to its known localities. Replace/refine locality names as needed, but keep every Agra pincode listed here so the pincode-check never wrongly rejects a real Agra address.",
+  "deliveryZones": {
+    "282001": ["Sadar Bazaar", "Civil Lines", "Rakabganj"],
+    "282002": ["Shahganj", "Rambagh", "Belanganj"],
+    "282003": ["Agra Cantt", "Sadar", "MG Road"],
+    "282004": ["Idgah", "Namner", "Bhagwan Talkies"],
+    "282005": ["Dayalbagh", "Kamla Nagar", "Sikandra Road"],
+    "282006": ["Khandari", "Agra University", "Balkeshwar"],
+    "282007": ["Tajganj", "Fatehabad Road", "Shastripuram"],
+    "282008": ["Sikandra", "Bichpuri Road", "Artoni"],
+    "282009": ["Kheria", "Bijli Ghar", "Namner Road"],
+    "282010": ["Shastripuram", "Taj Nagri", "Nunhai"]
+  },
+
+  "_comment_products": "price = launch price (₹). mrp = regular price (~50% higher), shown struck-through. See README 'Updating Pricing'.",
+  "products": [
+    {
+      "id": "protein-x",
+      "name": "Soy Protein X Drink",
+      "shortName": "Protein X",
+      "tagline": "High Protein. Complete Amino Profile. Real Food.",
+      "description": "Whole soybean and soy protein isolate blended with flax and chia — a complete 9 essential amino acid profile with built-in BCAAs, in a drink, not a powder.",
+      "video": "NEW BENTAM CHALK HRO VIDEO.mp4",
+      "image": "protein.jpg.jpg",
+      "attributes": [
+        "High Protein",
+        "Complete 9 Essential Amino Acid Profile",
+        "BCAAs",
+        "Flax & Chia Seed Infused"
+      ],
+      "care": [
+        "3-day shelf life (refrigerated)",
+        "Shake well before drinking",
+        "No added sugar",
+        "Zero preservatives"
+      ],
+      "sizes": {
+        "300ml": { "label": "300ml", "protein_g": 17.91, "kcal": 181, "rda_protein": 33, "price": 35, "mrp": 53, "trialPrice": 50 },
+        "500ml": { "label": "500ml", "protein_g": 29.85, "kcal": 302, "rda_protein": 54, "price": 50, "mrp": 75, "trialPrice": 50 }
+      },
+      "defaultSize": "300ml",
+      "orderOptions": [
+        { "id": "single", "label": "Single Bottle", "type": "one-time", "deliveries": 1, "description": "Try it once — no commitment." },
+        { "id": "weekly", "label": "Weekly", "type": "subscription", "frequency": "weekly", "deliveries": 7, "description": "7 days of delivery." },
+        { "id": "fortnightly", "label": "15 Days", "type": "subscription", "frequency": "fortnightly", "deliveries": 15, "description": "15 days of delivery." },
+        { "id": "monthly", "label": "Monthly", "type": "subscription", "frequency": "monthly", "deliveries": 30, "description": "30 days of delivery." }
+      ],
+      "nutrients": {
+        "macros": [
+          { "name": "Protein", "status": "LAB", "per300": "17.91 g", "per500": "29.85 g", "rda300": 33, "rda500": 54, "claim": "USE" },
+          { "name": "Energy", "status": "LAB", "per300": "181 kcal", "per500": "302 kcal", "rda300": 9, "rda500": 15, "claim": "info" },
+          { "name": "Total Carbohydrate", "status": "LAB", "per300": "9.63 g", "per500": "16.05 g", "rda300": null, "rda500": null, "claim": "info" },
+          { "name": "Total Sugar", "status": "LAB", "per300": "3.51 g", "per500": "5.85 g", "rda300": null, "rda500": null, "claim": "USE (low sugar)" },
+          { "name": "Total Fat", "status": "LAB", "per300": "7.92 g", "per500": "13.20 g", "rda300": null, "rda500": null, "claim": "info" },
+          { "name": "Saturated Fat", "status": "LAB", "per300": "1.17 g", "per500": "1.95 g", "rda300": null, "rda500": null, "claim": "USE (low sat fat)" },
+          { "name": "Cholesterol", "status": "LAB", "per300": "0 mg", "per500": "0 mg", "rda300": 0, "rda500": 0, "claim": "USE (cholesterol-free)" },
+          { "name": "Dietary Fibre (incl. seeds)", "status": "LAB", "per300": "3.24 g", "per500": "5.40 g", "rda300": 11, "rda500": 18, "claim": "CONFIRM" },
+          { "name": "Sodium", "status": "LAB", "per300": "252 mg", "per500": "420 mg", "rda300": null, "rda500": null, "claim": "USE (low sodium)" }
+        ],
+        "vitamins": [
+          { "name": "Vitamin B1 (Thiamine)", "status": "LAB", "per300": "0.72 mg", "per500": "1.20 mg", "rda300": 60, "rda500": 100, "claim": "CONFIRM" },
+          { "name": "Vitamin B2 (Riboflavin)", "status": "LAB", "per300": "0.90 mg", "per500": "1.50 mg", "rda300": 69, "rda500": 115, "claim": "CONFIRM" },
+          { "name": "Vitamin B6", "status": "LAB", "per300": "0.27 mg", "per500": "0.45 mg", "rda300": 17, "rda500": 28, "claim": "info" },
+          { "name": "Vitamin E", "status": "LAB", "per300": "0.54 mg", "per500": "0.90 mg", "rda300": 5, "rda500": 9, "claim": "info" },
+          { "name": "Folate (B9)", "status": "ESTIMATED", "per300": "~55 µg", "per500": "~92 µg", "rda300": 18, "rda500": 31, "claim": "TEST NEXT" }
+        ],
+        "minerals": [
+          { "name": "Magnesium", "status": "LAB", "per300": "81 mg", "per500": "135 mg", "rda300": 20, "rda500": 34, "claim": "info" },
+          { "name": "Calcium", "status": "LAB", "per300": "63 mg", "per500": "105 mg", "rda300": 6, "rda500": 11, "claim": "info" },
+          { "name": "Potassium", "status": "LAB", "per300": "396 mg", "per500": "660 mg", "rda300": 11, "rda500": 19, "claim": "info" },
+          { "name": "Iron", "status": "ESTIMATED", "per300": "~2 mg", "per500": "~3.3 mg", "rda300": 10, "rda500": 17, "claim": "TEST NEXT" },
+          { "name": "Phosphorus", "status": "ESTIMATED", "per300": "~150 mg", "per500": "~250 mg", "rda300": 21, "rda500": 36, "claim": "TEST NEXT" },
+          { "name": "Zinc", "status": "ESTIMATED", "per300": "~1.25 mg", "per500": "~2.1 mg", "rda300": 8, "rda500": 14, "claim": "TEST NEXT" },
+          { "name": "Manganese", "status": "ESTIMATED", "per300": "~0.65 mg", "per500": "~1.1 mg", "rda300": 28, "rda500": 47, "claim": "TEST NEXT" },
+          { "name": "Copper", "status": "ESTIMATED", "per300": "~0.35 mg", "per500": "~0.58 mg", "rda300": 39, "rda500": 65, "claim": "TEST NEXT" },
+          { "name": "Selenium", "status": "ESTIMATED", "per300": "trace", "per500": "trace", "rda300": null, "rda500": null, "claim": "no claim" }
+        ],
+        "bioactives": [
+          { "name": "Omega-3 ALA (flax+chia)", "status": "LAB", "per300": "1.62 g", "per500": "2.70 g", "rda300": 125, "rda500": 208, "claim": "USE" },
+          { "name": "Omega-6 LA (flax+chia)", "status": "LAB", "per300": "3.42 g", "per500": "5.70 g", "rda300": 24, "rda500": 41, "claim": "info" },
+          { "name": "Soy Isoflavones", "status": "ESTIMATED", "per300": "~25-70 mg", "per500": "~42-117 mg", "rda300": null, "rda500": null, "claim": "content only" },
+          { "name": "Lignans (from flax)", "status": "ESTIMATED", "per300": "present, notable", "per500": "present, notable", "rda300": null, "rda500": null, "claim": "content only" },
+          { "name": "Plant Sterols / Lecithin", "status": "ESTIMATED", "per300": "present", "per500": "present", "rda300": null, "rda500": null, "claim": "content only" },
+          { "name": "BCAAs", "status": "ESTIMATED", "per300": "~2.4 g", "per500": "~4.0 g", "rda300": null, "rda500": null, "claim": "content only" }
+        ]
+      }
+    },
+    {
+      "id": "soy-boondi-chaas",
+      "name": "Soy Boondi Masala Mix Chaas",
+      "shortName": "Boondi Masala Chaas",
+      "tagline": "100% Plant-Based. Dairy-Free. Probiotic. Curd-Cultured.",
+      "description": "A curd-cultured, plant-based chaas with nutritious masala taste — 100% plant-based, dairy-free, and probiotic, made the traditional way.",
+      "video": "boondi chaas.mp4.mp4",
+      "image": "chaas.jpg.jpg",
+      "attributes": [
+        "100% Plant-Based",
+        "Dairy-Free",
+        "Probiotic",
+        "Nutritious Masala Taste",
+        "Curd-Cultured"
+      ],
+      "care": [
+        "3-day shelf life (refrigerated)",
+        "Shake well before drinking",
+        "No added sugar",
+        "Zero preservatives"
+      ],
+      "sizes": {
+        "300ml": { "label": "300ml", "protein_g": 5.34, "kcal": 46.3, "rda_protein": 10, "price": 10, "mrp": 15, "trialPrice": 20 },
+        "500ml": { "label": "500ml", "protein_g": 8.90, "kcal": 77.2, "rda_protein": 16, "price": 15, "mrp": 23, "trialPrice": 25 },
+        "1000ml": { "label": "1 L", "protein_g": 17.80, "kcal": 154.5, "rda_protein": 32, "price": 35, "mrp": 53, "trialPrice": 45 }
+      },
+      "defaultSize": "300ml",
+      "orderOptions": [
+        { "id": "single", "label": "Single Bottle", "type": "one-time", "deliveries": 1, "description": "Try it once — no commitment." },
+        { "id": "weekly", "label": "Weekly", "type": "subscription", "frequency": "weekly", "deliveries": 7, "description": "7 days of delivery." },
+        { "id": "fortnightly", "label": "15 Days", "type": "subscription", "frequency": "fortnightly", "deliveries": 15, "description": "15 days of delivery." },
+        { "id": "monthly", "label": "Monthly", "type": "subscription", "frequency": "monthly", "deliveries": 30, "description": "30 days of delivery." }
+      ],
+      "nutrients": {
+        "macros": [
+          { "name": "Protein", "status": "LAB", "per300": "5.34 g", "per500": "8.90 g", "per1000": "17.80 g", "rda300": 10, "rda500": 16, "rda1000": 32, "claim": "USE" },
+          { "name": "Energy", "status": "LAB", "per300": "46.3 kcal", "per500": "77.2 kcal", "per1000": "154.5 kcal", "rda300": 2.3, "rda500": 4, "rda1000": 8, "claim": "info" },
+          { "name": "Total Carbohydrate", "status": "LAB", "per300": "2.39 g", "per500": "3.99 g", "per1000": "7.96 g", "rda300": null, "rda500": null, "rda1000": null, "claim": "info" },
+          { "name": "Total Sugar", "status": "LAB", "per300": "1.24 g", "per500": "2.06 g", "per1000": "4.12 g", "rda300": null, "rda500": null, "rda1000": null, "claim": "USE (low sugar)" },
+          { "name": "Total Fat", "status": "LAB", "per300": "1.72 g", "per500": "2.86 g", "per1000": "5.72 g", "rda300": null, "rda500": null, "rda1000": null, "claim": "USE (low fat)" },
+          { "name": "Saturated Fat", "status": "LAB", "per300": "0.33 g", "per500": "0.56 g", "per1000": "1.13 g", "rda300": null, "rda500": null, "rda1000": null, "claim": "USE (low sat fat)" },
+          { "name": "Cholesterol", "status": "LAB", "per300": "0 mg", "per500": "0 mg", "per1000": "0 mg", "rda300": 0, "rda500": 0, "rda1000": 0, "claim": "USE (cholesterol-free)" },
+          { "name": "Dietary Fibre", "status": "LAB", "per300": "2.44 g", "per500": "4.07 g", "per1000": "8.15 g", "rda300": 8, "rda500": 14, "rda1000": 27, "claim": "CONFIRM (source of fibre)" },
+          { "name": "Sodium", "status": "LAB", "per300": "51 mg", "per500": "84 mg", "per1000": "169 mg", "rda300": null, "rda500": null, "rda1000": null, "claim": "USE (low sodium)" }
+        ],
+        "vitamins": [
+          { "name": "Calcium / Potassium / B-vits", "status": "LAB", "per300": "present, minor", "per500": "present, minor", "per1000": "present", "rda300": null, "rda500": null, "rda1000": null, "claim": "info" }
+        ],
+        "minerals": [
+          { "name": "Iron", "status": "LAB", "per300": "~1 mg", "per500": "~1.6 mg", "per1000": "~3.1 mg", "rda300": 5, "rda500": 8, "rda1000": 16, "claim": "info" }
+        ],
+        "bioactives": [
+          { "name": "Soy Isoflavones", "status": "LAB", "per300": "~14-24 mg", "per500": "~24-40 mg", "per1000": "~48-79 mg", "rda300": null, "rda500": null, "rda1000": null, "claim": "content only" },
+          { "name": "Mustard oil MUFA/Omega-3", "status": "LAB", "per300": "small, present", "per500": "present", "per1000": "present", "rda300": null, "rda500": null, "rda1000": null, "claim": "content only" }
+        ]
+      }
+    }
+  ],
+
+  "rdaReference": [
+    { "nutrient": "Protein", "value": "55 g" },
+    { "nutrient": "Energy", "value": "2000 kcal" },
+    { "nutrient": "Dietary Fibre", "value": "30 g" },
+    { "nutrient": "Omega-3 (ALA)", "value": "1.3 g" },
+    { "nutrient": "Omega-6 (LA)", "value": "14 g (avg)" },
+    { "nutrient": "Calcium", "value": "1000 mg" },
+    { "nutrient": "Magnesium", "value": "400 mg" },
+    { "nutrient": "Potassium", "value": "3500 mg" },
+    { "nutrient": "Vitamin E", "value": "10 mg" },
+    { "nutrient": "Vitamin B1", "value": "1.2 mg" },
+    { "nutrient": "Vitamin B2", "value": "1.3 mg" },
+    { "nutrient": "Vitamin B6", "value": "1.6 mg" },
+    { "nutrient": "Iron", "value": "19 mg (M) / 29 mg (F)" },
+    { "nutrient": "Zinc", "value": "17 mg (M) / 13 mg (F)" },
+    { "nutrient": "Folate (B9)", "value": "300 µg" },
+    { "nutrient": "Phosphorus", "value": "700 mg" },
+    { "nutrient": "Manganese", "value": "2.3 mg" },
+    { "nutrient": "Selenium", "value": "40 µg" },
+    { "nutrient": "Copper", "value": "0.9 mg" },
+    { "nutrient": "Sodium (limit)", "value": "< 2000 mg" },
+    { "nutrient": "Sugar (WHO limit)", "value": "< 50 g" },
+    { "nutrient": "Saturated fat (limit)", "value": "< 20 g" }
+  ],
+
+  "whyDifferent": [
+    { "icon": "protein", "title": "Complete Protein", "body": "All 9 essential amino acids — the completeness you'd expect from egg or whey, minus the cholesterol and lactose." },
+    { "icon": "omega", "title": "Omega-3 Balance", "body": "Real flax and chia bring the Omega-6-to-Omega-3 ratio to roughly 2:1 — far closer to balance than the 10:1 or worse of a typical modern diet, with a full day's Omega-3 in every bottle." },
+    { "icon": "bone", "title": "Bone Support, Beyond Dairy", "body": "Measurable calcium and magnesium with zero dairy — going plant-based doesn't mean giving up the basics." },
+    { "icon": "bcaa", "title": "Built-In BCAAs", "body": "Leucine, isoleucine and valine — the recovery aminos gym-goers buy as powder — already dissolved in a real food." },
+    { "icon": "cholesterol", "title": "Genuinely Zero Cholesterol", "body": "100% plant-based — not 'low', not 'reduced', lab-confirmed zero on every batch tested." },
+    { "icon": "clean", "title": "Whole-Food Clean Label", "body": "Whole soybean, roasted spices, mustard oil, flax and chia — no preservatives, no added sugar, no stripped isolates." }
+  ],
+
+  "trustStrip": [
+    { "icon": "protein", "label": "Complete Protein", "tooltip": "All 9 essential amino acids — the completeness of egg or whey, minus cholesterol and lactose." },
+    { "icon": "cholesterol", "label": "Zero Cholesterol", "tooltip": "100% plant-based means genuinely zero cholesterol, lab-confirmed on every batch tested." },
+    { "icon": "fresh", "label": "3-Day Fresh Refrigerated", "tooltip": "Made fresh in small batches. No preservatives — keep chilled, consume within 3 days." },
+    { "icon": "lab", "label": "Lab-Tested", "tooltip": "Nutrition figures verified through Fast Labs testing — real numbers you can count on." }
+  ],
+
+  "ingredientStory": [
+    {
+      "title": "Cultured The Traditional Way",
+      "art": "curd", "image": "",
+      "body": "Chaas starts as soy milk set into curd — a fermentation step used in Indian kitchens for generations, giving it a natural probiotic character.",
+      "status": "CONFIRM PROCESS"
+    },
+    {
+      "title": "Seasoned The Desi Way — With Benefits",
+      "art": "mustard", "image": "",
+      "body": "Mustard oil isn't just flavour: it naturally carries monounsaturated fats and a small Omega-3 contribution, with a long-standing place in Indian kitchens.",
+      "status": "ESTIMATED"
+    },
+    {
+      "title": "Flaxseed's Best-Kept Secret",
+      "art": "flax", "image": "",
+      "body": "Flaxseed is widely recognised as the richest dietary source of lignans, plant compounds concentrated in the seed coat — a genuine point of difference versus any drink that skips whole seeds.",
+      "status": "ESTIMATED"
+    },
+    {
+      "title": "Naturally Heart-Smart Fats",
+      "art": "soy", "image": "",
+      "body": "Whole soybean naturally contains plant sterols and lecithin — sterols compete with cholesterol for absorption, lecithin supports fat digestion and cell membrane health.",
+      "status": "ESTIMATED"
+    },
+    {
+      "title": "Nature's Plant Compounds, Included",
+      "art": "beans", "image": "",
+      "body": "Soybean is the richest known dietary source of isoflavones, naturally occurring plant compounds unique to soy — stated as a content fact, not a health claim.",
+      "status": "ESTIMATED"
+    }
+  ],
+
+  "_comment_science": "Educational research summaries with citations. Bodies are content/education framing — review disease-related wording against FSSAI health-claim rules before print/packaging.",
+  "science": {
+    "intro": "We don't rely on marketing claims. The nutritional power of our 100% plant-based ingredients is documented by global health authorities and decades of clinical trials. Don't just take our word for it—read the research.",
+    "items": [
+      {
+        "q": "🫀 What the Research Says About Soy & Heart Health",
+        "a": "A comprehensive meta-analysis of 46 clinical trials reported that soy protein lowered total and LDL (\"bad\") cholesterol. The authors note this supports the long-standing reference intake of 25g of soy protein a day as part of a diet low in saturated fat. Because a plant-based drink naturally displaces saturated fat, it's an easy way to work soy into your day.<p class=\"sci-link\"><a href=\"https://pubmed.ncbi.nlm.nih.gov/31006811/\" target=\"_blank\" rel=\"noopener\">Read the research by Blanco Mejia et al. ↗</a></p>"
+      },
+      {
+        "q": "💪 A True \"Complete\" Protein",
+        "a": "Unlike most plant proteins, soybean is recognised by nutrition scientists as a complete protein. Studies evaluating protein quality report that soy protein isolate achieves a Protein Digestibility-Corrected Amino Acid Score (PDCAAS) of 1.00 — matching the value of animal proteins like milk and whey, without the cholesterol or lactose.<p class=\"sci-link\"><a href=\"https://pubmed.ncbi.nlm.nih.gov/22017752/\" target=\"_blank\" rel=\"noopener\">Read the research by Hughes et al. ↗</a></p>"
+      },
+      {
+        "q": "🛡️ What the Research Says About Soy Safety",
+        "a": "A comprehensive safety evaluation of soy isoflavones reviewed their effects in humans and concluded they are safe to consume, reporting no harmful effects on breast tissue, the uterus, or the thyroid hormone system in healthy women. It's the reassurance behind whole-soybean nutrition.<p class=\"sci-link\"><a href=\"https://pmc.ncbi.nlm.nih.gov/articles/PMC6132702/\" target=\"_blank\" rel=\"noopener\">Read the safety evaluation by Hüser et al. ↗</a></p>"
+      },
+      {
+        "q": "🧠 Whole-Food Nutrition, Reviewed",
+        "a": "A review of the clinical and epidemiological literature highlights that whole soybeans are a rare, rich plant source of polyunsaturated fats along with naturally occurring plant compounds (isoflavones). The author summarises how whole-soy nutrition has been studied in relation to lipid metabolism and overall health.<p class=\"sci-link\"><a href=\"https://pmc.ncbi.nlm.nih.gov/articles/PMC5188409/\" target=\"_blank\" rel=\"noopener\">Read the epidemiological literature by Messina ↗</a></p>"
+      }
+    ]
+  },
+
+  "_comment_chatKnowledge": "Offline fallback brain for the 'Ask Bentam' chatbot (used only when the AI backend/ANTHROPIC_API_KEY is not set). Each entry has keys (match phrases), q (topic), a (answer HTML). FSSAI-safe: educational framing, no disease cure claims.",
+  "chatKnowledge": [
+    { "keys": ["weight", "lose weight", "fat loss", "slim", "satiety", "filling", "diet", "calories", "appetite"], "q": "Weight management", "a": "Nutrition science is clear that protein is the most satiating macronutrient — it keeps you full and helps preserve lean muscle while you lose fat. Soya Protein X gives <strong>17.91 g complete protein</strong> per 300 ml with <strong>no added sugar</strong> and fibre from flax & chia (~181 kcal) — a filling swap for a sugary snack. <em>General nutrition info, not medical advice.</em>" },
+    { "keys": ["muscle", "build muscle", "gym", "strength", "workout", "recovery", "gains", "bcaa", "protein synthesis"], "q": "Muscle building", "a": "For muscle you need enough complete protein and the essential amino acids that trigger repair. Soy is a rare <strong>complete</strong> plant protein with all 9 essential amino acids plus built-in BCAAs (leucine). A 500 ml Protein X delivers <strong>29.85 g protein</strong> in easy-to-drink form — handy around workouts." },
+    { "keys": ["complete protein", "amino acid", "essential amino", "quality protein", "plant protein"], "q": "Complete protein", "a": "Most plant proteins miss an essential amino acid — soy is the exception, providing <strong>all 9 essential amino acids</strong> at a quality (PDCAAS ≈ 0.9–1.0) comparable to milk and egg. That's why our whole-soybean Protein X counts as a complete protein." },
+    { "keys": ["soy hormone", "estrogen", "testosterone", "man", "men", "male", "phytoestrogen", "isoflavone"], "q": "Soy and hormones", "a": "This is the biggest soy myth. Soy isoflavones are <em>phyto</em>estrogens — plant compounds that behave very differently from human estrogen. Large research reviews find <strong>moderate soy does not lower testosterone or raise estrogen in men</strong>. It's safe and nourishing for everyone. <em>If you have a hormone-sensitive condition, check with your doctor.</em>" },
+    { "keys": ["heart", "cholesterol", "ldl", "cardiac", "blood pressure", "arteries"], "q": "Heart health", "a": "Plant foods have <strong>zero cholesterol</strong> — both our drinks are cholesterol-free and low in saturated fat. Soy protein has been studied for heart health, and the omega-3 (ALA) from our flax & chia adds to a heart-friendly profile. <em>Not a treatment for any condition.</em>" },
+    { "keys": ["omega", "omega-3", "omega 3", "omega-6", "ala", "fatty acid", "brain"], "q": "Omega-3 & 6", "a": "Omega-3 and 6 are essential fats your body can't make. Protein X is infused with <strong>flax and chia</strong>, giving ~<strong>1.6 g plant omega-3 (ALA)</strong> per 300 ml — a far more balanced ratio than typical processed foods." },
+    { "keys": ["lactose", "lactose intolerant", "milk allergy", "dairy allergy", "bloating", "digest milk"], "q": "Lactose intolerance", "a": "Perfect fit — an estimated <strong>60–70% of Indian adults are lactose-intolerant</strong>. Both drinks are 100% plant-based with <strong>zero lactose and zero dairy</strong>, so you get protein and refreshment without the discomfort." },
+    { "keys": ["sugar", "blood sugar", "diabetes", "diabetic", "glucose", "glycemic", "insulin"], "q": "Blood sugar", "a": "Both drinks have <strong>no added sugar</strong> — only the little that occurs naturally. Protein and fibre slow how fast sugars enter the blood, so a protein-forward, low-added-sugar drink is generally gentler than a sweetened one. <em>If you manage diabetes, follow your doctor's/dietitian's guidance.</em>" },
+    { "keys": ["gut", "digestion", "probiotic", "fermented", "stomach", "microbiome"], "q": "Gut & digestion", "a": "Our Boondi Masala Chaas is <strong>curd-cultured</strong> — fermented soy, the traditional step behind classic chaas. Cultured drinks plus fibre support a healthy gut, and being dairy-free it's gentle on lactose-sensitive stomachs." },
+    { "keys": ["vegan", "plant based", "vegetarian", "cruelty free", "animal"], "q": "Vegan / plant-based", "a": "100% plant-based by design — no dairy, no animal input, cruelty-free. Soy is the go-to for vegans and vegetarians because it's a <strong>complete protein</strong>, solving the biggest gap in plant diets." },
+    { "keys": ["flax", "flaxseed", "chia", "seed"], "q": "Flax & chia", "a": "Flaxseed is one of the richest plant sources of <strong>omega-3 (ALA)</strong>, fibre and lignans; chia adds omega-3, fibre and a little protein. We infuse both into Protein X for a heart- and digestion-friendly boost you can drink." },
+    { "keys": ["whole soybean", "isolate", "processed", "whole food", "filler"], "q": "Whole soybean vs isolate", "a": "Many protein drinks use stripped <em>isolates</em>. We build on <strong>whole soybean</strong>, keeping more of the natural fibre, minerals and healthy fats — nutrition the way nature packaged it, never fillers." },
+    { "keys": ["adulteration", "pure", "purity", "fake milk", "safe food", "real food"], "q": "Adulteration & purity", "a": "Food adulteration — especially milk — is a serious problem in India, and it's core to why we exist: <strong>pure, daily-fresh plant nourishment</strong> with the honesty of a home kitchen and lab-tested nutrition." },
+    { "keys": ["how much protein", "daily protein", "protein requirement", "enough protein", "protein per day"], "q": "Daily protein need", "a": "A common guideline (WHO/ICMR) is ~<strong>0.8–1 g protein per kg body weight</strong> daily — roughly 50–70 g for many adults, more if active. Most Indian diets fall short; a 500 ml Protein X gives <strong>29.85 g</strong> in one drink." }
+  ],
+
+  "_comment_faq": "Grouped by theme (freshness → taste → nutrition → ingredients/trust → ordering) with emoji cues for scannability. Keep answers concise and FSSAI-safe: no disease/cure claims; point soy-safety questions to the Science section.",
+  "faq": [
+    {
+      "q": "🧊 How long does it stay fresh? (shelf life)",
+      "a": "Shelf life is 3 days, chilled. With zero preservatives the fridge does all the work — it lasts longest kept cold from our hands to your glass."
+    },
+    {
+      "q": "🫙 Why does it settle — do I shake it?",
+      "a": "Give it a shake. Natural settling just means there are no artificial stabilisers holding it together."
+    },
+    {
+      "q": "❄️ Can I freeze it to make it last longer?",
+      "a": "Better not — freezing splits the texture. Keep it chilled, not frozen, and enjoy within 3 days."
+    },
+    {
+      "q": "🥤 Chaas or Protein X — what's the difference?",
+      "a": "Chaas is a light, cultured, masala refresher. Protein X packs up to 29.85 g protein a bottle. Both are 100% plant-based, dairy-free and cholesterol-free."
+    },
+    {
+      "q": "😋 Does the Chaas actually taste like chaas?",
+      "a": "It does — cultured soy curd, roasted spices and mustard oil, the desi way. Familiar taste, plant-based body."
+    },
+    {
+      "q": "💪 How much protein do I really get?",
+      "a": "300 ml gives 17.91 g protein, 500 ml gives 29.85 g (about 54% of an adult's daily protein) — both with all 9 essential amino acids."
+    },
+    {
+      "q": "🌱 Is it fully vegan?",
+      "a": "100% plant-based by design — no dairy, no lactose, no cholesterol, nothing from an animal."
+    },
+    {
+      "q": "🥛 Truly dairy-free and lactose-free?",
+      "a": "Completely. It's built for dairy-sensitive and lactose-intolerant folks — zero of either."
+    },
+    {
+      "q": "🍬 How much sugar is in it?",
+      "a": "No added sugar. The trace that's there occurs naturally — no spike, no crash."
+    },
+    {
+      "q": "🏋️ Is it good around workouts?",
+      "a": "A natural fit — complete protein plus built-in BCAAs, already in easy-to-drink liquid form."
+    },
+    {
+      "q": "🧬 Is soy safe to drink regularly?",
+      "a": "Soy is one of the few complete plant proteins and has been studied for decades. See our \"Backed by Global Science\" section for the actual research."
+    },
+    {
+      "q": "🧾 What's inside — any fillers?",
+      "a": "Whole soybean, plus flax & chia in Protein X, and roasted spices & mustard oil in the Chaas. Whole ingredients — never stripped isolates or fillers."
+    },
+    {
+      "q": "🔬 Are the nutrition numbers real?",
+      "a": "Every figure comes from our Fast Labs test report — measured in a lab, not marketing guesswork."
+    },
+    {
+      "q": "📍 Do you deliver to my area?",
+      "a": "We're live across {{serviceAreas}}. Open the cart, enter your pincode, and it'll tell you instantly — or join the waitlist if we're not there yet."
+    },
+    {
+      "q": "🔁 How do subscriptions work?",
+      "a": "Pick your bottles-per-day and a plan — weekly (7 days) or monthly (30). We total it up and deliver fresh on schedule."
+    },
+    {
+      "q": "⏸️ Can I pause or change my plan?",
+      "a": "Anytime. Swap size, change locality, or pause — since every batch is fresh, we simply adjust your next delivery."
+    },
+    {
+      "q": "💳 How do I pay?",
+      "a": "UPI or card at checkout — quick and secure. WhatsApp is there for questions, not payment."
+    },
+    {
+      "q": "📦 What if something's wrong with my order?",
+      "a": "Message us on WhatsApp before you open the bottle — leaking, warm or wrong, and we'll replace or refund. Being fresh and short-life, we can't accept opened bottles."
+    }
+  ]
+}

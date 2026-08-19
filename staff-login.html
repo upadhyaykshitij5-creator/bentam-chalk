@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Staff Login — Bentam Chalk</title>
+<link rel="stylesheet" href="ops.css" />
+</head>
+<body>
+  <div class="ops-login-shell">
+    <div class="ops-login-box">
+      <div class="ops-header" style="justify-content:center; margin-bottom:1.5rem;">
+        <span class="ops-brand">Bentam <span>Chalk</span></span>
+      </div>
+      <div class="ops-card">
+        <h1>Staff Login</h1>
+        <p class="ops-sub">Owner and delivery dashboards.</p>
+        <form id="loginForm">
+          <div class="ops-field">
+            <label for="username">Username</label>
+            <input id="username" name="username" type="text" autocomplete="username" required />
+          </div>
+          <div class="ops-field">
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" autocomplete="current-password" required />
+          </div>
+          <button type="submit" class="ops-btn">Log In</button>
+          <p class="ops-error" id="loginError" hidden></p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const err = document.getElementById("loginError");
+      err.hidden = true;
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value;
+      try {
+        const r = await fetch("/api/staff/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, password }),
+        });
+        const data = await r.json();
+        if (!r.ok || !data.ok) {
+          err.textContent = data.error || "Login failed.";
+          err.hidden = false;
+          return;
+        }
+        location.href = data.role === "owner" ? "/admin.html" : "/delivery.html";
+      } catch {
+        err.textContent = "Network error — try again.";
+        err.hidden = false;
+      }
+    });
+  </script>
+</body>
+</html>

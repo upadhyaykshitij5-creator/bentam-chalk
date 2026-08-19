@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Customers &amp; Deliveries — Bentam Chalk</title>
+<link rel="stylesheet" href="ops.css" />
+</head>
+<body>
+  <div class="ops-wrap wide">
+    <div class="ops-header">
+      <span class="ops-brand">Bentam <span>Chalk</span> — Owner</span>
+      <button class="ops-logout" id="logoutBtn">Log out</button>
+    </div>
+    <h1>Customers &amp; Deliveries</h1>
+    <p class="ops-sub">Every customer who has subscribed, with their full delivery schedule and status — the same records your delivery team sees, and the same the customer sees on their own tracking link.</p>
+
+    <div class="ops-card" id="statsCard" style="display:flex;gap:2rem;flex-wrap:wrap"></div>
+
+    <div class="ops-card" style="padding:0">
+      <div id="custList"></div>
+    </div>
+  </div>
+
+  <script>
+    const $ = (s) => document.querySelector(s);
+
+    async function requireOwner() {
+      const r = await fetch("/api/staff/me");
+      const me = await r.json();
+      if (!me.loggedIn || me.role !== "owner") { location.href = "/staff-login.html"; return null; }
+      return me;
+    }
+
+    function escapeHtml(s) {
+      return String(s || "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+    }
+    function badgeHtml(status) {
+      const map = { pending: "⏳", delivered: "✅", missed: "❌", skipped: "⏸️" };
+      return `<span class="badge ${status}">${map[status] || ""} ${status}</span>`;
+    }
+    function counts(deliveries) {
+      const c = { pending: 0, delivered: 0, missed: 0, skipped: 0 };
+      deliveries.forEach((d) => { if (c[d.status] !== undefined) c[d.status]++; });
+      return c;
+    }
+
+    async function loadAll() {
+      const r = await fetch("/api/admin/subscriptions");
+      if (r.status === 401) { location.href = "/staff-login.html"; return; }
+      const data = await r.json();
+      const subs = data.subscriptions || [];
+
+      // Top-line stats
+      const today = new Date().toISOString().slice(0, 10);
+      let todayTotal = 0, todayDone = 0, activeSubs = 0;
+      subs.forEach((s) => {
+        const t = s.deliveries.find((d) => d.date === today);
+        if (t) { todayTotal++; if (t.status === "delivered") todayDone++; }
+        if (s.deliveries.some((d) => d.status === "pending")) activeSubs++;
+      });
+      $("#statsCard").innerHTML = `
+        <div><div style="font-size:1.6rem;font-weight:700;color:var(--white)">${subs.length}</div><div style="font-size:0.8rem;color:var(--slate)">Total subscriptions</div></div>
+        <div><div style="font-size:1.6rem;font-weight:700;color:var(--white)">${activeSubs}</div><div style="font-size:0.8rem;color:var(--slate)">Active (deliveries pending)</div></div>
+        <div><div style="font-size:1.6rem;font-weight:700;color:var(--white)">${todayDone}/${todayTotal}</div><div style="font-size:0.8rem;color:var(--slate)">Delivered today</div></div>`;
+
+      const list = $("#custList");
+      if (!subs.length) {
+        list.innerHTML = `<p class="ops-empty">No subscriptions yet — they appear here automatically once a customer completes a paid order.</p>`;
+        return;
+      }
+      list.innerHTML = subs.map((s, i) => {
+        const c = counts(s.deliveries);
+        const fullAddr = `${s.customer.address || ""}${s.customer.locality ? ", " + s.customer.locality : ""}, Agra`;
+        const mapsUrl = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(fullAddr);
+        return `
+          <div class="cust-item">
+            <div class="cust-top">
+              <div>
+                <div class="cust-name">${escapeHtml(s.customer.name)} <span style="font-weight:400;color:var(--slate);font-size:0.8rem">· ${escapeHtml(s.customer.phone || "")}</span></div>
+                <div class="cust-meta">${escapeHtml(s.product.name)} (${escapeHtml(s.product.size)}) · ${escapeHtml(s.plan.type)} · ${s.plan.bottlesPerDay}/day · ${escapeHtml(s.customer.address || "")}${s.customer.locality ? ", " + escapeHtml(s.customer.locality) : ""}</div>
+                <a class="ops-link" href="${mapsUrl}" target="_blank" rel="noopener" style="font-size:0.8rem">📍 Open in Maps</a>
+              </div>
+              <a class="ops-link" href="/track.html?t=${s.trackToken}" target="_blank" rel="noopener">Customer's view →</a>
+            </div>
+            <div class="cust-stats">
+              <span>✅ ${c.delivered} delivered</span>
+              <span>⏳ ${c.pending} pending</span>
+              <span>❌ ${c.missed} missed</span>
+              ${c.skipped ? `<span>⏸️ ${c.skipped} skipped</span>` : ""}
+            </div>
+            <button class="cust-toggle" data-idx="${i}">Show full schedule ▾</button>
+            <div class="cust-detail" id="detail-${i}">
+              ${s.deliveries.map((d) => `
+                <div class="day-row ${d.date === today ? "today" : ""}">
+                  <span class="day-date">${d.date}${d.date === today ? " (today)" : ""}</span>
+                  <span class="day-bottles">${d.bottles}/day</span>
+                  ${badgeHtml(d.status)}
+                </div>`).join("")}
+            </div>
+          </div>`;
+      }).join("");
+
+      list.querySelectorAll(".cust-toggle").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const el = $("#detail-" + btn.dataset.idx);
+          const open = el.classList.toggle("open");
+          btn.textContent = open ? "Hide full schedule ▴" : "Show full schedule ▾";
+        });
+      });
+    }
+
+    $("#logoutBtn").addEventListener("click", async () => {
+      await fetch("/api/staff/logout", { method: "POST" });
+      location.href = "/staff-login.html";
+    });
+
+    (async () => { if (await requireOwner()) loadAll(); })();
+  </script>
+</body>
+</html>
