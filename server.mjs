@@ -363,6 +363,18 @@ async function handleApi(req, res, pathname) {
     return sendJson(res, 200, { enabled: PAYMENTS_ENABLED, keyId: PAYMENTS_ENABLED ? KEY_ID : "" });
   }
 
+  // TEMPORARY diagnostic — safe (no secret values, only lengths/booleans).
+  // Remove once the Render env var issue is confirmed fixed.
+  if (pathname === "/api/debug-env" && req.method === "GET") {
+    return sendJson(res, 200, {
+      hasKeyId: Boolean(process.env.RAZORPAY_KEY_ID),
+      keyIdLength: (process.env.RAZORPAY_KEY_ID || "").length,
+      hasKeySecret: Boolean(process.env.RAZORPAY_KEY_SECRET),
+      keySecretLength: (process.env.RAZORPAY_KEY_SECRET || "").length,
+      razorpayEnvNames: Object.keys(process.env).filter((k) => k.includes("RAZORPAY")),
+    });
+  }
+
   // (1) Create an order — price is computed SERVER-SIDE from data.json.
   if (pathname === "/api/create-order" && req.method === "POST") {
     if (!PAYMENTS_ENABLED) return sendJson(res, 503, { error: "Payments not configured on server" });
