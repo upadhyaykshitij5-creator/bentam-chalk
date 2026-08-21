@@ -20,7 +20,7 @@
 // static preview keeps working with no keys.
 
 import { createServer } from "node:http";
-import { readFile, appendFile, readFile as read } from "node:fs/promises";
+import { readFile, appendFile, readFile as read, mkdir } from "node:fs/promises";
 import { extname, join, normalize } from "node:path";
 import { pathToFileURL } from "node:url";
 import crypto from "node:crypto";
@@ -31,8 +31,11 @@ import {
 
 const ROOT = import.meta.dirname;
 const PORT = process.env.PORT || 8080;
-const DATA_PATH = join(ROOT, "data.json");
-const ORDERS_LOG = join(ROOT, "orders.log.jsonl"); // simple file store (see README)
+const DATA_PATH = join(ROOT, "data.json"); // product catalog — ships with the code, not runtime data
+// DATA_DIR points at a persistent disk in production (e.g. Render), so order
+// history survives redeploys — falls back to the repo checkout for local dev.
+const DATA_DIR = process.env.DATA_DIR || ROOT;
+const ORDERS_LOG = join(DATA_DIR, "orders.log.jsonl"); // simple file store (see README)
 
 const KEY_ID = process.env.RAZORPAY_KEY_ID || "";
 const KEY_SECRET = process.env.RAZORPAY_KEY_SECRET || "";
@@ -575,6 +578,10 @@ server.on("error", (err) => {
 // Only start listening when run directly (`node server.mjs`), not when imported
 // by a test that just wants computeAmountPaise().
 if (import.meta.url === pathToFileURL(process.argv[1] || "").href) {
+  // Make sure the (possibly mounted-disk) data directory exists before
+  // anything tries to write order/subscription/staff files into it.
+  await mkdir(DATA_DIR, { recursive: true }).catch(() => {});
+
   // First run only: creates the owner + delivery1 staff accounts with strong
   // random passwords and prints them ONCE. They're stored as scrypt hashes —
   // this console line is the only place the plaintext ever exists, so save it.

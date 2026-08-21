@@ -10,8 +10,12 @@ import { join, dirname } from "node:path";
 import crypto from "node:crypto";
 
 const ROOT = import.meta.dirname;
-const SUBS_PATH = join(ROOT, "subscriptions.json");
-const STAFF_PATH = join(ROOT, "staff.json");
+// DATA_DIR points at a persistent disk in production (e.g. Render), so
+// subscriptions/staff accounts survive redeploys — falls back to the repo
+// checkout itself for local dev, where nothing needs to survive a restart.
+const DATA_DIR = process.env.DATA_DIR || ROOT;
+const SUBS_PATH = join(DATA_DIR, "subscriptions.json");
+const STAFF_PATH = join(DATA_DIR, "staff.json");
 
 async function readJsonSafe(path, fallback) {
   try { return JSON.parse(await readFile(path, "utf8")); } catch { return fallback; }
