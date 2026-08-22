@@ -50,6 +50,10 @@
           const v = entry.target;
           v.dataset.inView = entry.isIntersecting ? "1" : "0";
           if (entry.isIntersecting) {
+            // Below-the-fold videos carry preload="none" so they never download
+            // until actually scrolled to — switch to real preloading the first
+            // time that happens, then let the browser fetch and start playing.
+            if (v.preload === "none") { v.preload = "auto"; v.load(); }
             // Safety net: a play() call that lands mid-scroll-transition can get
             // dropped/interrupted. Retry across a spread of delays if it didn't take —
             // each a no-op once it succeeds, or if the video scrolled back out of view
@@ -369,7 +373,7 @@
     const media = el("div", "pc-media");
     media.innerHTML =
       `<span class="pc-media-badge">${p.shortName}</span>` +
-      `<video autoplay muted loop playsinline poster="${p.image}" aria-label="${p.name} preview">` +
+      `<video autoplay muted loop playsinline preload="none" poster="${p.image}" aria-label="${p.name} preview">` +
       `<source src="${p.video}" type="video/mp4"></video>`;
     card.appendChild(media);
     observeVideoVisibility(media.querySelector("video"));
