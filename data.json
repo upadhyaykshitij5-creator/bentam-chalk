@@ -369,23 +369,23 @@
     },
     {
       "q": "📍 Do you deliver to my area?",
-      "a": "We're live across {{serviceAreas}}. Open the cart, enter your pincode, and it'll tell you instantly — or join the waitlist if we're not there yet."
+      "a": "We currently deliver only within {{serviceAreas}}. Open the cart, enter your pincode (or tap \"Use my current location\"), and it'll tell you instantly — or join the waitlist if we're not there yet."
     },
     {
       "q": "🔁 How do subscriptions work?",
-      "a": "Pick your bottles-per-day and a plan — weekly (7 days) or monthly (30). We total it up and deliver fresh on schedule."
+      "a": "Pick a plan: <strong>Single Bottle</strong> (one-time trial), <strong>Weekly</strong> (7 days), <strong>15-Day</strong>, or <strong>Monthly</strong> (30 days) — plus how many bottles per day. The full amount is charged once, upfront, via secure Razorpay checkout, then we deliver fresh daily for the length of your plan. You'll get a personal tracking link showing every delivery's status."
     },
     {
       "q": "⏸️ Can I pause or change my plan?",
-      "a": "Anytime. Swap size, change locality, or pause — since every batch is fresh, we simply adjust your next delivery."
+      "a": "Yes — message us on WhatsApp with your order details anytime to pause, skip, or cancel remaining undelivered days. Days already delivered aren't refundable since they're made fresh specifically for you; undelivered days are refunded pro-rata. Full details in our Refund &amp; Cancellation Policy."
     },
     {
       "q": "💳 How do I pay?",
-      "a": "UPI or card at checkout — quick and secure. WhatsApp is there for questions, not payment."
+      "a": "Payment is entirely through Razorpay's secure checkout — cards, UPI (GPay/PhonePe/any app), netbanking, and wallets are all supported in one locked, server-priced window. WhatsApp is there for questions, not payment."
     },
     {
       "q": "📦 What if something's wrong with my order?",
-      "a": "Message us on WhatsApp before you open the bottle — leaking, warm or wrong, and we'll replace or refund. Being fresh and short-life, we can't accept opened bottles."
+      "a": "Message us on WhatsApp within 4 hours of delivery with a photo — damaged, spoiled, or wrong item, and we'll replace it free on your next delivery or refund that bottle. Being fresh and short-life, we can't accept claims reported later than that."
     }
   ]
 }
