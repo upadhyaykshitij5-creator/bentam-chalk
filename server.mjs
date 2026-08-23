@@ -55,7 +55,14 @@ const TYPES = {
   ".html": "text/html", ".css": "text/css", ".js": "text/javascript",
   ".json": "application/json", ".mp4": "video/mp4",
   ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png",
+  ".txt": "text/plain", ".xml": "application/xml",
 };
+
+// The one canonical, public-facing hostname — everything else (www, the
+// Render subdomain, any other alias pointed at this service) 301s here so
+// Google indexes a single URL per page instead of splitting authority
+// across duplicates. Override via env var if the canonical host ever changes.
+const CANONICAL_HOST = process.env.CANONICAL_HOST || "bentamchalk.com";
 
 /* ============================================================
    PRICE ENGINE — the single security-critical function.
@@ -561,6 +568,19 @@ async function handleStatic(req, res, pathname) {
 }
 
 const server = createServer(async (req, res) => {
+  // Canonicalize to https://CANONICAL_HOST before anything else — collapses
+  // http, www, and the old onrender.com URL down to one indexable address.
+  // Skipped for local dev (localhost) so `node server.mjs` still works.
+  const hostname = (req.headers.host || "").toLowerCase().split(":")[0];
+  const isLocal = hostname === "localhost" || hostname === "127.0.0.1" || hostname === "";
+  if (!isLocal) {
+    const proto = req.headers["x-forwarded-proto"] || (req.socket.encrypted ? "https" : "http");
+    if (proto !== "https" || hostname !== CANONICAL_HOST) {
+      res.writeHead(301, { Location: `https://${CANONICAL_HOST}${req.url}` });
+      return res.end();
+    }
+  }
+
   const pathname = decodeURIComponent((req.url || "/").split("?")[0]);
   if (pathname.startsWith("/api/")) return handleApi(req, res, pathname);
   return handleStatic(req, res, pathname);

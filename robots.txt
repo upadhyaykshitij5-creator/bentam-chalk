@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /staff-login.html
+Disallow: /admin.html
+Disallow: /delivery.html
+Disallow: /track.html
+Disallow: /bottle-labels.html
+
+Sitemap: https://bentamchalk.com/sitemap.xml
