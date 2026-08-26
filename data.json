@@ -161,9 +161,9 @@
         "Zero preservatives"
       ],
       "sizes": {
-        "300ml": { "label": "300ml", "protein_g": 5.34, "kcal": 46.3, "rda_protein": 10, "price": 10, "mrp": 15, "trialPrice": 20 },
-        "500ml": { "label": "500ml", "protein_g": 8.90, "kcal": 77.2, "rda_protein": 16, "price": 15, "mrp": 23, "trialPrice": 25 },
-        "1000ml": { "label": "1 L", "protein_g": 17.80, "kcal": 154.5, "rda_protein": 32, "price": 35, "mrp": 53, "trialPrice": 45 }
+        "300ml": { "label": "300ml", "protein_g": 2.88, "kcal": 27, "rda_protein": 5.8, "price": 10, "mrp": 15, "trialPrice": 20 },
+        "500ml": { "label": "500ml", "protein_g": 4.80, "kcal": 45, "rda_protein": 9.6, "price": 15, "mrp": 23, "trialPrice": 25 },
+        "1000ml": { "label": "1 L", "protein_g": 9.60, "kcal": 90, "rda_protein": 19.2, "price": 35, "mrp": 53, "trialPrice": 45 }
       },
       "defaultSize": "300ml",
       "orderOptions": [
@@ -174,15 +174,15 @@
       ],
       "nutrients": {
         "macros": [
-          { "name": "Protein", "status": "LAB", "per300": "5.34 g", "per500": "8.90 g", "per1000": "17.80 g", "rda300": 10, "rda500": 16, "rda1000": 32, "claim": "USE" },
-          { "name": "Energy", "status": "LAB", "per300": "46.3 kcal", "per500": "77.2 kcal", "per1000": "154.5 kcal", "rda300": 2.3, "rda500": 4, "rda1000": 8, "claim": "info" },
-          { "name": "Total Carbohydrate", "status": "LAB", "per300": "2.39 g", "per500": "3.99 g", "per1000": "7.96 g", "rda300": null, "rda500": null, "rda1000": null, "claim": "info" },
-          { "name": "Total Sugar", "status": "LAB", "per300": "1.24 g", "per500": "2.06 g", "per1000": "4.12 g", "rda300": null, "rda500": null, "rda1000": null, "claim": "USE (low sugar)" },
-          { "name": "Total Fat", "status": "LAB", "per300": "1.72 g", "per500": "2.86 g", "per1000": "5.72 g", "rda300": null, "rda500": null, "rda1000": null, "claim": "USE (low fat)" },
-          { "name": "Saturated Fat", "status": "LAB", "per300": "0.33 g", "per500": "0.56 g", "per1000": "1.13 g", "rda300": null, "rda500": null, "rda1000": null, "claim": "USE (low sat fat)" },
+          { "name": "Protein", "status": "LAB", "per300": "2.88 g", "per500": "4.80 g", "per1000": "9.60 g", "rda300": 5.8, "rda500": 9.6, "rda1000": 19.2, "claim": "USE" },
+          { "name": "Energy", "status": "LAB", "per300": "27 kcal", "per500": "45 kcal", "per1000": "90 kcal", "rda300": 1.4, "rda500": 2.2, "rda1000": 4.5, "claim": "info" },
+          { "name": "Total Carbohydrate", "status": "LAB", "per300": "1.02 g", "per500": "1.7 g", "per1000": "3.4 g", "rda300": null, "rda500": null, "rda1000": null, "claim": "info" },
+          { "name": "Total Sugar", "status": "LAB", "per300": "0.30 g", "per500": "0.50 g", "per1000": "1.0 g", "rda300": null, "rda500": null, "rda1000": null, "claim": "USE (low sugar)" },
+          { "name": "Total Fat", "status": "LAB", "per300": "1.47 g", "per500": "2.45 g", "per1000": "4.9 g", "rda300": null, "rda500": null, "rda1000": null, "claim": "USE (low fat)" },
+          { "name": "Saturated Fat", "status": "LAB", "per300": "0.21 g", "per500": "0.35 g", "per1000": "0.7 g", "rda300": null, "rda500": null, "rda1000": null, "claim": "USE (low sat fat)" },
           { "name": "Cholesterol", "status": "LAB", "per300": "0 mg", "per500": "0 mg", "per1000": "0 mg", "rda300": 0, "rda500": 0, "rda1000": 0, "claim": "USE (cholesterol-free)" },
-          { "name": "Dietary Fibre", "status": "LAB", "per300": "2.44 g", "per500": "4.07 g", "per1000": "8.15 g", "rda300": 8, "rda500": 14, "rda1000": 27, "claim": "CONFIRM (source of fibre)" },
-          { "name": "Sodium", "status": "LAB", "per300": "51 mg", "per500": "84 mg", "per1000": "169 mg", "rda300": null, "rda500": null, "rda1000": null, "claim": "USE (low sodium)" }
+          { "name": "Dietary Fibre", "status": "LAB", "per300": "0.36 g", "per500": "0.6 g", "per1000": "1.2 g", "rda300": 1.5, "rda500": 2.5, "rda1000": 5, "claim": "CONFIRM (source of fibre)" },
+          { "name": "Sodium", "status": "LAB", "per300": "6 mg", "per500": "10 mg", "per1000": "20 mg", "rda300": null, "rda500": null, "rda1000": null, "claim": "USE (low sodium)" }
         ],
         "vitamins": [
           { "name": "Calcium / Potassium / B-vits", "status": "LAB", "per300": "present, minor", "per500": "present, minor", "per1000": "present", "rda300": null, "rda500": null, "rda1000": null, "claim": "info" }
