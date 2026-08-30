@@ -42,6 +42,97 @@ const KEY_SECRET = process.env.RAZORPAY_KEY_SECRET || "";
 const WEBHOOK_SECRET = process.env.RAZORPAY_WEBHOOK_SECRET || "";
 const PAYMENTS_ENABLED = Boolean(KEY_ID && KEY_SECRET);
 
+// Notification credentials — set these in Render environment variables.
+// All three are optional; any combination works independently.
+const RESEND_API_KEY   = process.env.RESEND_API_KEY   || ""; // email via resend.com
+const NOTIFY_EMAIL     = process.env.NOTIFY_EMAIL     || "bentamchalk@gmail.com";
+const WA_TOKEN         = process.env.WA_TOKEN         || ""; // WhatsApp Cloud API access token
+const WA_PHONE_ID      = process.env.WA_PHONE_ID      || ""; // WhatsApp Phone Number ID
+const NOTIFY_WA_NUMBER = process.env.NOTIFY_WA_NUMBER || ""; // owner's WhatsApp number (intl, e.g. 919258010913)
+const FORMSPREE_URL    = process.env.FORMSPREE_URL    || ""; // https://formspree.io/f/xxxx
+
+/* ============================================================
+   ORDER NOTIFICATIONS — fires once per new paid subscription.
+   All three channels are optional; any missing credential is
+   silently skipped. Never throws — notifications must never
+   block or break the checkout flow.
+   ============================================================ */
+function buildNotifyText(order, items) {
+  const c = order.customer || {};
+  const itemLines = (items || []).map(i =>
+    `  • ${i.productName} ${i.sizeLabel} ×${i.bottlesPerDay}/day × ${i.days}d`
+  ).join("\n");
+  return (
+    `🛍 New Bentam Chalk Order\n` +
+    `Order ID: ${order.orderId || "-"}\n` +
+    `Customer: ${c.name || "-"} | +91 ${c.phone || "-"}\n` +
+    `Address: ${c.address || "-"}, ${c.locality || "-"}\n` +
+    `Plan: ${order.freq || "single"}\n` +
+    `Items:\n${itemLines || "  -"}\n` +
+    `Total: ₹${order.amountRupees || "-"}\n` +
+    `Placed: ${new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" })}`
+  );
+}
+
+async function notifyEmail(order, items) {
+  if (!RESEND_API_KEY) return;
+  try {
+    await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Authorization: `Bearer ${RESEND_API_KEY}` },
+      body: JSON.stringify({
+        from: "orders@bentamchalk.com",
+        to: [NOTIFY_EMAIL],
+        subject: `New Order — ${(order.customer || {}).name || "Customer"} (${order.orderId || ""})`,
+        text: buildNotifyText(order, items),
+      }),
+    });
+  } catch (e) { console.error("Email notify failed:", e.message); }
+}
+
+async function notifyWhatsApp(order, items) {
+  if (!WA_TOKEN || !WA_PHONE_ID || !NOTIFY_WA_NUMBER) return;
+  try {
+    await fetch(`https://graph.facebook.com/v19.0/${WA_PHONE_ID}/messages`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Authorization: `Bearer ${WA_TOKEN}` },
+      body: JSON.stringify({
+        messaging_product: "whatsapp",
+        to: NOTIFY_WA_NUMBER,
+        type: "text",
+        text: { body: buildNotifyText(order, items) },
+      }),
+    });
+  } catch (e) { console.error("WhatsApp notify failed:", e.message); }
+}
+
+async function notifyFormspree(order, items) {
+  if (!FORMSPREE_URL) return;
+  try {
+    const c = order.customer || {};
+    const fd = new FormData();
+    fd.append("orderId",   order.orderId   || "");
+    fd.append("name",      c.name          || "");
+    fd.append("phone",     c.phone         || "");
+    fd.append("address",   c.address       || "");
+    fd.append("locality",  c.locality      || "");
+    fd.append("plan",      order.freq      || "single");
+    fd.append("total",     `₹${order.amountRupees || "-"}`);
+    fd.append("items",     (items || []).map(i =>
+      `${i.productName} ${i.sizeLabel} ×${i.bottlesPerDay}/day × ${i.days}d`).join("; "));
+    fd.append("placedAt",  new Date().toISOString());
+    await fetch(FORMSPREE_URL, { method: "POST", body: fd, headers: { Accept: "application/json" } });
+  } catch (e) { console.error("Formspree notify failed:", e.message); }
+}
+
+async function notifyOwner(order, items) {
+  await Promise.allSettled([
+    notifyEmail(order, items),
+    notifyWhatsApp(order, items),
+    notifyFormspree(order, items),
+  ]);
+}
+
 // "Ask Bentam" AI assistant — a real LLM (Claude) grounded in our product data.
 // Set ANTHROPIC_API_KEY in .env to switch the site's chatbot from the offline
 // knowledge base to full open-ended AI. ANTHROPIC_MODEL is optional; default is
@@ -189,6 +280,8 @@ async function ensureSubscriptionsForOrder(orderId) {
     tracking.push({ token: sub.trackToken, product: r.productName });
   }
   await recordOrder({ orderId, status: "subscribed", subscriptionsCreated: true, trackingLinks: tracking, at: new Date().toISOString() });
+  // Fire-and-forget notifications — never awaited so they can't delay checkout.
+  notifyOwner(stored, resolved).catch(() => {});
   return tracking;
 }
 
