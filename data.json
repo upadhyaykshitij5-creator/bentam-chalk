@@ -89,10 +89,10 @@
         "Zero preservatives"
       ],
       "sizes": {
-        "300ml": { "label": "300ml", "protein_g": 17.91, "kcal": 181, "rda_protein": 33, "price": 35, "mrp": 53, "trialPrice": 50 },
-        "500ml": { "label": "500ml", "protein_g": 29.85, "kcal": 302, "rda_protein": 54, "price": 50, "mrp": 75, "trialPrice": 50 }
+        "300ml": { "label": "300ml", "protein_g": 17.91, "kcal": 181, "rda_protein": 33, "price": 40, "mrp": 60, "trialPrice": 55 },
+        "500ml": { "label": "500ml", "protein_g": 29.85, "kcal": 302, "rda_protein": 54, "price": 65, "mrp": 98, "trialPrice": 70 }
       },
-      "defaultSize": "300ml",
+      "defaultSize": "250ml",
       "orderOptions": [
         { "id": "single", "label": "Single Bottle", "type": "one-time", "deliveries": 1, "description": "Try it once — no commitment." },
         { "id": "weekly", "label": "Weekly", "type": "subscription", "frequency": "weekly", "deliveries": 7, "description": "7 days of delivery." },
@@ -161,11 +161,11 @@
         "Zero preservatives"
       ],
       "sizes": {
-        "300ml": { "label": "300ml", "protein_g": 2.88, "kcal": 27, "rda_protein": 5.8, "price": 10, "mrp": 15, "trialPrice": 20 },
-        "500ml": { "label": "500ml", "protein_g": 4.80, "kcal": 45, "rda_protein": 9.6, "price": 15, "mrp": 23, "trialPrice": 25 },
-        "1000ml": { "label": "1 L", "protein_g": 9.60, "kcal": 90, "rda_protein": 19.2, "price": 35, "mrp": 53, "trialPrice": 45 }
+        "250ml": { "label": "250ml", "protein_g": 2.40, "kcal": 22.5, "rda_protein": 4.8, "price": 15, "mrp": 22, "trialPrice": 18 },
+        "500ml": { "label": "500ml", "protein_g": 4.80, "kcal": 45, "rda_protein": 9.6, "price": 25, "mrp": 38, "trialPrice": 30 },
+        "1000ml": { "label": "1 L", "protein_g": 9.60, "kcal": 90, "rda_protein": 19.2, "price": 40, "mrp": 60, "trialPrice": 50 }
       },
-      "defaultSize": "300ml",
+      "defaultSize": "250ml",
       "orderOptions": [
         { "id": "single", "label": "Single Bottle", "type": "one-time", "deliveries": 1, "description": "Try it once — no commitment." },
         { "id": "weekly", "label": "Weekly", "type": "subscription", "frequency": "weekly", "deliveries": 7, "description": "7 days of delivery." },
@@ -174,25 +174,25 @@
       ],
       "nutrients": {
         "macros": [
-          { "name": "Protein", "status": "LAB", "per300": "2.88 g", "per500": "4.80 g", "per1000": "9.60 g", "rda300": 5.8, "rda500": 9.6, "rda1000": 19.2, "claim": "USE" },
-          { "name": "Energy", "status": "LAB", "per300": "27 kcal", "per500": "45 kcal", "per1000": "90 kcal", "rda300": 1.4, "rda500": 2.2, "rda1000": 4.5, "claim": "info" },
-          { "name": "Total Carbohydrate", "status": "LAB", "per300": "1.02 g", "per500": "1.7 g", "per1000": "3.4 g", "rda300": null, "rda500": null, "rda1000": null, "claim": "info" },
-          { "name": "Total Sugar", "status": "LAB", "per300": "0.30 g", "per500": "0.50 g", "per1000": "1.0 g", "rda300": null, "rda500": null, "rda1000": null, "claim": "USE (low sugar)" },
-          { "name": "Total Fat", "status": "LAB", "per300": "1.47 g", "per500": "2.45 g", "per1000": "4.9 g", "rda300": null, "rda500": null, "rda1000": null, "claim": "USE (low fat)" },
-          { "name": "Saturated Fat", "status": "LAB", "per300": "0.21 g", "per500": "0.35 g", "per1000": "0.7 g", "rda300": null, "rda500": null, "rda1000": null, "claim": "USE (low sat fat)" },
-          { "name": "Cholesterol", "status": "LAB", "per300": "0 mg", "per500": "0 mg", "per1000": "0 mg", "rda300": 0, "rda500": 0, "rda1000": 0, "claim": "USE (cholesterol-free)" },
-          { "name": "Dietary Fibre", "status": "LAB", "per300": "0.36 g", "per500": "0.6 g", "per1000": "1.2 g", "rda300": 1.5, "rda500": 2.5, "rda1000": 5, "claim": "CONFIRM (source of fibre)" },
-          { "name": "Sodium", "status": "LAB", "per300": "6 mg", "per500": "10 mg", "per1000": "20 mg", "rda300": null, "rda500": null, "rda1000": null, "claim": "USE (low sodium)" }
+          { "name": "Protein", "status": "LAB", "per250": "2.40 g", "per500": "4.80 g", "per1000": "9.60 g", "rda250": 4.8, "rda500": 9.6, "rda1000": 19.2, "claim": "USE" },
+          { "name": "Energy", "status": "LAB", "per250": "22.5 kcal", "per500": "45 kcal", "per1000": "90 kcal", "rda250": 1.1, "rda500": 2.2, "rda1000": 4.5, "claim": "info" },
+          { "name": "Total Carbohydrate", "status": "LAB", "per250": "0.85 g", "per500": "1.7 g", "per1000": "3.4 g", "rda250": null, "rda500": null, "rda1000": null, "claim": "info" },
+          { "name": "Total Sugar", "status": "LAB", "per250": "0.25 g", "per500": "0.50 g", "per1000": "1.0 g", "rda250": null, "rda500": null, "rda1000": null, "claim": "USE (low sugar)" },
+          { "name": "Total Fat", "status": "LAB", "per250": "1.22 g", "per500": "2.45 g", "per1000": "4.9 g", "rda250": null, "rda500": null, "rda1000": null, "claim": "USE (low fat)" },
+          { "name": "Saturated Fat", "status": "LAB", "per250": "0.17 g", "per500": "0.35 g", "per1000": "0.7 g", "rda250": null, "rda500": null, "rda1000": null, "claim": "USE (low sat fat)" },
+          { "name": "Cholesterol", "status": "LAB", "per250": "0 mg", "per500": "0 mg", "per1000": "0 mg", "rda250": 0, "rda500": 0, "rda1000": 0, "claim": "USE (cholesterol-free)" },
+          { "name": "Dietary Fibre", "status": "LAB", "per250": "0.30 g", "per500": "0.6 g", "per1000": "1.2 g", "rda250": 1.0, "rda500": 2.5, "rda1000": 5, "claim": "CONFIRM (source of fibre)" },
+          { "name": "Sodium", "status": "LAB", "per250": "5 mg", "per500": "10 mg", "per1000": "20 mg", "rda250": null, "rda500": null, "rda1000": null, "claim": "USE (low sodium)" }
         ],
         "vitamins": [
-          { "name": "Calcium / Potassium / B-vits", "status": "LAB", "per300": "present, minor", "per500": "present, minor", "per1000": "present", "rda300": null, "rda500": null, "rda1000": null, "claim": "info" }
+          { "name": "Calcium / Potassium / B-vits", "status": "LAB", "per250": "present, minor", "per500": "present, minor", "per1000": "present", "rda250": null, "rda500": null, "rda1000": null, "claim": "info" }
         ],
         "minerals": [
-          { "name": "Iron", "status": "LAB", "per300": "~1 mg", "per500": "~1.6 mg", "per1000": "~3.1 mg", "rda300": 5, "rda500": 8, "rda1000": 16, "claim": "info" }
+          { "name": "Iron", "status": "LAB", "per250": "~0.8 mg", "per500": "~1.6 mg", "per1000": "~3.1 mg", "rda250": 4, "rda500": 8, "rda1000": 16, "claim": "info" }
         ],
         "bioactives": [
-          { "name": "Soy Isoflavones", "status": "LAB", "per300": "~14-24 mg", "per500": "~24-40 mg", "per1000": "~48-79 mg", "rda300": null, "rda500": null, "rda1000": null, "claim": "content only" },
-          { "name": "Mustard oil MUFA/Omega-3", "status": "LAB", "per300": "small, present", "per500": "present", "per1000": "present", "rda300": null, "rda500": null, "rda1000": null, "claim": "content only" }
+          { "name": "Soy Isoflavones", "status": "LAB", "per250": "~12-20 mg", "per500": "~24-40 mg", "per1000": "~48-79 mg", "rda250": null, "rda500": null, "rda1000": null, "claim": "content only" },
+          { "name": "Mustard oil MUFA/Omega-3", "status": "LAB", "per250": "small, present", "per500": "present", "per1000": "present", "rda250": null, "rda500": null, "rda1000": null, "claim": "content only" }
         ]
       }
     }
