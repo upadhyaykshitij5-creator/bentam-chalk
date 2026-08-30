@@ -81,7 +81,7 @@ async function notifyEmail(order, items) {
       method: "POST",
       headers: { "Content-Type": "application/json", Authorization: `Bearer ${RESEND_API_KEY}` },
       body: JSON.stringify({
-        from: "orders@bentamchalk.com",
+        from: "Bentam Chalk Orders <onboarding@resend.dev>",
         to: [NOTIFY_EMAIL],
         subject: `New Order — ${(order.customer || {}).name || "Customer"} (${order.orderId || ""})`,
         text: buildNotifyText(order, items),
