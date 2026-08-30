@@ -44,7 +44,7 @@
     },
     "_comment_orderCapture": "Where customer + order details are saved so you OWN them (independent of WhatsApp). Paste a form-endpoint URL that emails you each submission or writes it to a sheet — e.g. Formspree (https://formspree.io/f/xxxx), Getform, Basin, or a Google Apps Script web-app URL. All are free, no KYC, ~2 min to set up. When set, every checkout POSTs {orderId, items, total, name, phone, address, locality} there. Leave endpoint empty to keep the current WhatsApp order fallback until you've set one up.",
     "orderCapture": {
-      "endpoint": ""
+      "endpoint": "https://formspree.io/f/xyeykgqy"
     }
   },
 
