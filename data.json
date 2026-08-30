@@ -92,7 +92,7 @@
         "300ml": { "label": "300ml", "protein_g": 17.91, "kcal": 181, "rda_protein": 33, "price": 40, "mrp": 60, "trialPrice": 55 },
         "500ml": { "label": "500ml", "protein_g": 29.85, "kcal": 302, "rda_protein": 54, "price": 65, "mrp": 98, "trialPrice": 70 }
       },
-      "defaultSize": "250ml",
+      "defaultSize": "300ml",
       "orderOptions": [
         { "id": "single", "label": "Single Bottle", "type": "one-time", "deliveries": 1, "description": "Try it once — no commitment." },
         { "id": "weekly", "label": "Weekly", "type": "subscription", "frequency": "weekly", "deliveries": 7, "description": "7 days of delivery." },
